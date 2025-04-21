@@ -36,7 +36,7 @@ app.use("/api/events", eventRoutes);
 app.use("/api/events", registrationRoutes);
 app.use("/api", auth);
 
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Hello from Express + Vercel Serverless!");
 });
 
