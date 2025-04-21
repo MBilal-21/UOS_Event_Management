@@ -172,7 +172,12 @@ const AdminUsers = () => {
                       {activeTab === 'pending' && (
                         <td className="p-3">
                           <button
-                            onClick={() => handleVerify(user._id, user.registrationInfo.id)}
+                            onClick={() => {
+                              if (user.registrationInfo !== 'Not Registered') {
+                                handleVerify(user._id, user.registrationInfo.id);
+                              }
+                            }}
+                            
                             className="bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-xs sm:text-sm"
                             disabled={ploading}
                           >
