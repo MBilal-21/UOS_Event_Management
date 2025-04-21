@@ -11,11 +11,23 @@ require("dotenv").config();
 
 const app = express();
 
-// CORS
-app.use(cors({
-  origin: process.env.ORIGIN_URL || "http://localhost:3001",
-  credentials: true
-}));
+const allowedOrigins = [
+    "https://uos-event-management.vercel.app",   // your frontend (client) domain
+    "https://uos-event-management-git-main-mbilal-21s-projects.vercel.app"  ,
+    "https://uos-event-management-nfbgmsqgi-mbilal-21s-projects.vercel.app"     // if you have another frontend domain
+  ];
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true
+  }));
+  
 
 // Middleware
 app.use(express.json());
